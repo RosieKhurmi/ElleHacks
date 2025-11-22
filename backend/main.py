@@ -17,7 +17,7 @@ load_dotenv(dotenv_path=env_path)
 
 # Initialize FastAPI app
 app = FastAPI(
-    title="Small Business Finder API",
+    title="LocalMaps API",
     description="API for finding small businesses using Google Maps and Gemini AI",
     version="1.0.0"
 )
@@ -40,7 +40,7 @@ app.include_router(health.router, prefix="/api", tags=["health"])
 async def root():
     """Root endpoint with API information"""
     return {
-        "message": "Small Business Finder API",
+        "message": "LocalMaps API",
         "version": "1.0.0",
         "endpoints": {
             "health": "/api/health",

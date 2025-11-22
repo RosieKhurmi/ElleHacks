@@ -36,7 +36,7 @@ function App() {
     }
   }, []);
 
-  const handleSearch = async (searchQuery) => {
+  const handleSearch = async (searchQuery, filters = {}) => {
     if (!searchQuery.trim() || !location) {
       setError('Please enter a search query');
       return;
@@ -50,13 +50,29 @@ function App() {
     try {
       const response = await axios.post('/api/search', {
         query: searchQuery,
-        location: location
+        location: location,
+        filters: filters
       });
 
       if (response.data.success) {
-        setBusinesses(response.data.places);
-        if (response.data.places.length === 0) {
-          setError('No small businesses found. Try a different search.');
+        let filteredBusinesses = response.data.places;
+
+        // Apply client-side filters
+        if (filters.minRating && parseFloat(filters.minRating) > 0) {
+          filteredBusinesses = filteredBusinesses.filter(
+            b => b.rating && b.rating >= parseFloat(filters.minRating)
+          );
+        }
+
+        if (filters.openNow) {
+          filteredBusinesses = filteredBusinesses.filter(
+            b => b.opening_hours && b.opening_hours.open_now
+          );
+        }
+
+        setBusinesses(filteredBusinesses);
+        if (filteredBusinesses.length === 0) {
+          setError('No small businesses found matching your filters. Try adjusting them.');
         }
       } else {
         setError('Search failed. Please try again.');
@@ -72,7 +88,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>🏪 Small Business Finder</h1>
+        <h1>🏪 LocalMaps</h1>
         <p>Discover local, independent businesses near you</p>
       </header>
 
