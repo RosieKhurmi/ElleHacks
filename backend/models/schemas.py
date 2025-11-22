@@ -49,3 +49,35 @@ class HealthResponse(BaseModel):
     message: str
     google_maps_api_configured: bool
     gemini_api_configured: bool
+
+# Auth schemas
+class RegisterRequest(BaseModel):
+    """User registration request"""
+    username: str = Field(..., min_length=3, max_length=50)
+    email: str = Field(..., pattern=r'^[\w\.-]+@[\w\.-]+\.\w+$')
+    password: str = Field(..., min_length=6)
+
+class LoginRequest(BaseModel):
+    """User login request"""
+    username: str
+    password: str
+
+class AuthResponse(BaseModel):
+    """Authentication response"""
+    success: bool
+    token: str
+    user: Dict[str, Any]
+
+class MessageResponse(BaseModel):
+    """Generic message response"""
+    success: bool
+    message: str
+
+class FavoriteRequest(BaseModel):
+    """Add favorite request"""
+    place_data: Dict[str, Any]
+
+class FavoriteResponse(BaseModel):
+    """Favorites list response"""
+    success: bool
+    favorites: List[Dict[str, Any]]

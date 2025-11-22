@@ -52,6 +52,7 @@
   align-items: flex-start;
   margin-bottom: 10px;
   gap: 10px;
+  position: relative;
 }
 
 .business-header h3 {
@@ -59,6 +60,29 @@
   font-size: 1.2rem;
   margin: 0;
   flex: 1;
+}
+
+.favorite-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+  color: #ccc;
+}
+
+.favorite-button:hover {
+  transform: scale(1.2);
+}
+
+.favorite-button.favorited {
+  color: #f59e0b;
 }
 
 .rating {

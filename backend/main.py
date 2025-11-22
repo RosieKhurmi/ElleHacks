@@ -35,6 +35,14 @@ app.add_middleware(
 app.include_router(search.router, prefix="/api", tags=["search"])
 app.include_router(health.router, prefix="/api", tags=["health"])
 
+# Try to include auth routes (optional if database isn't set up)
+try:
+    from api.routes import auth
+    app.include_router(auth.router, prefix="/api/auth", tags=["auth"])
+    print("✓ Auth routes loaded")
+except Exception as e:
+    print(f"⚠ Auth routes not loaded: {e}")
+
 # Root endpoint
 @app.get("/")
 async def root():

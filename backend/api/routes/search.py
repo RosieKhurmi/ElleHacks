@@ -27,16 +27,20 @@ async def search_businesses(request: SearchRequest):
         SearchResponse with filtered small businesses
     """
     try:
+        print(f"Search request: {request.query} at ({request.location.lat}, {request.location.lng})")
+        
         # Validate input
         if not request.query or not request.query.strip():
             raise HTTPException(status_code=400, detail="Query cannot be empty")
         
         # Search places using Google Maps
+        print("Calling Google Maps API...")
         places = await google_maps_service.search_places(
             query=request.query,
             lat=request.location.lat,
             lng=request.location.lng
         )
+        print(f"Google Maps returned {len(places)} places")
         
         if not places:
             return SearchResponse(
@@ -60,7 +64,9 @@ async def search_businesses(request: SearchRequest):
     except HTTPException:
         raise
     except Exception as e:
+        import traceback
         print(f"Search error: {str(e)}")
+        print(traceback.format_exc())
         raise HTTPException(
             status_code=500,
             detail=f"Failed to search for places: {str(e)}"

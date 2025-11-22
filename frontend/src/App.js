@@ -1,18 +1,25 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { Loader } from '@googlemaps/js-api-loader';
+import { AuthProvider, useAuth } from './context/AuthContext';
 import SearchBar from './components/SearchBar';
 import BusinessList from './components/BusinessList';
 import Map from './components/Map';
+import Auth from './components/Auth';
+import Favorites from './components/Favorites';
 import './App.css';
 
-function App() {
+function AppContent() {
   const [query, setQuery] = useState('');
   const [location, setLocation] = useState(null);
   const [businesses, setBusinesses] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [selectedBusiness, setSelectedBusiness] = useState(null);
+  const [showAuth, setShowAuth] = useState(false);
+  const [showFavorites, setShowFavorites] = useState(false);
+  
+  const { user, logout, isAuthenticated } = useAuth();
 
   // Get user's current location on mount
   useEffect(() => {
@@ -88,9 +95,39 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>🏪 LocalMaps</h1>
-        <p>Discover local, independent businesses near you</p>
+        <div className="header-content">
+          <div>
+            <h1>🏪 LocalMaps</h1>
+            <p>Discover local, independent businesses near you</p>
+          </div>
+          <div className="header-auth">
+            {isAuthenticated ? (
+              <>
+                <span className="welcome-text">Welcome, {user?.username}!</span>
+                <button 
+                  onClick={() => setShowFavorites(!showFavorites)}
+                  className="auth-button"
+                >
+                  ⭐ Favorites
+                </button>
+                <button onClick={logout} className="auth-button">Logout</button>
+              </>
+            ) : (
+              <button onClick={() => setShowAuth(true)} className="auth-button">
+                Login / Register
+              </button>
+            )}
+          </div>
+        </div>
       </header>
+
+      {showAuth && <Auth onClose={() => setShowAuth(false)} />}
+      {showFavorites && (
+        <Favorites 
+          onClose={() => setShowFavorites(false)} 
+          onSelectBusiness={setSelectedBusiness}
+        />
+      )}
 
       <div className="content">
         <SearchBar 
@@ -134,6 +171,14 @@ function App() {
         </div>
       </div>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
   );
 }
 
