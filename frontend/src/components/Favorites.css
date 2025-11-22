@@ -1,0 +1,154 @@
+.favorites-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.favorites-modal {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.favorites-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #999;
+  line-height: 1;
+}
+
+.favorites-close:hover {
+  color: #333;
+}
+
+.favorites-modal h2 {
+  margin: 0 0 25px 0;
+  color: #333;
+}
+
+.favorites-loading {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+.favorites-empty {
+  text-align: center;
+  padding: 40px;
+  color: #999;
+}
+
+.favorites-empty p:first-child {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.favorites-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.favorite-item {
+  background: #f9f9f9;
+  border: 2px solid #eee;
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.favorite-info {
+  flex: 1;
+}
+
+.favorite-info h3 {
+  margin: 0 0 8px 0;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.favorite-address {
+  margin: 5px 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.favorite-rating {
+  margin: 5px 0;
+  color: #f59e0b;
+  font-weight: bold;
+}
+
+.favorite-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.view-button,
+.remove-button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.view-button {
+  background: #667eea;
+  color: white;
+}
+
+.view-button:hover {
+  background: #5568d3;
+  transform: translateY(-1px);
+}
+
+.remove-button {
+  background: #ef4444;
+  color: white;
+}
+
+.remove-button:hover {
+  background: #dc2626;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 600px) {
+  .favorite-item {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .favorite-actions {
+    flex-direction: row;
+  }
+
+  .view-button,
+  .remove-button {
+    flex: 1;
+  }
+}
