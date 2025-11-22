@@ -1,0 +1,33 @@
+.map-container {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+}
+
+.map-error {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  color: #c33;
+  text-align: center;
+}
+
+@media (max-width: 968px) {
+  .map-container {
+    height: 400px;
+  }
+}

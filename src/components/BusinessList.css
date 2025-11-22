@@ -1,0 +1,113 @@
+.business-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-height: 600px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.business-list::-webkit-scrollbar {
+  width: 8px;
+}
+
+.business-list::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.business-list::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.business-list::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.business-card {
+  background: #f9f9f9;
+  border: 2px solid #eee;
+  border-radius: 12px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.business-card:hover {
+  border-color: #667eea;
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+  transform: translateY(-2px);
+}
+
+.business-card.selected {
+  border-color: #667eea;
+  background: #f0f4ff;
+  box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+.business-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+.business-header h3 {
+  color: #333;
+  font-size: 1.2rem;
+  margin: 0;
+  flex: 1;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  color: #f59e0b;
+  white-space: nowrap;
+}
+
+.rating-count {
+  font-size: 0.85rem;
+  color: #666;
+  font-weight: normal;
+}
+
+.address {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 8px 0;
+  line-height: 1.4;
+}
+
+.status {
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin: 8px 0;
+}
+
+.status.open {
+  color: #10b981;
+}
+
+.status.closed {
+  color: #ef4444;
+}
+
+.types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.type-badge {
+  background: #667eea;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  text-transform: capitalize;
+}
