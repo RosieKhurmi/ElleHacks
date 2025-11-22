@@ -47,12 +47,15 @@
 }
 
 .business-header {
+  margin-bottom: 10px;
+}
+
+.business-title-row {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 10px;
   gap: 10px;
-  position: relative;
+  margin-bottom: 10px;
 }
 
 .business-header h3 {
@@ -62,27 +65,44 @@
   flex: 1;
 }
 
-.favorite-button {
+.business-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.favorite-button,
+.share-button {
   background: none;
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   cursor: pointer;
   padding: 0;
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: transform 0.2s;
-  color: #ccc;
+  color: #999;
 }
 
-.favorite-button:hover {
+.favorite-button:hover,
+.share-button:hover {
   transform: scale(1.2);
+}
+
+.favorite-button {
+  font-size: 1.5rem;
+  color: #ccc;
 }
 
 .favorite-button.favorited {
   color: #f59e0b;
+}
+
+.share-button:hover {
+  color: #667eea;
 }
 
 .rating {
